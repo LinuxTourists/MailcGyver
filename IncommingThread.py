@@ -6,6 +6,7 @@ Created on Thu Nov  3 13:04:14 2016
 """
 
 import mailbox
+from MGFilter import MGFilter
 
 def IncommingThread (conn, REPLY, KNOWN):
     incomming = dict (data = False, rcpt = None, mlfr = None, msg = "", mldr = "")
@@ -27,9 +28,12 @@ def IncommingThread (conn, REPLY, KNOWN):
             # tias            
             # stop = data.split("\n")[-1].strip()
             if data.split("\n")[-1].strip() == "." or data.split("\n")[-2].strip() == ".":
-                # todo: optional filter
-                md = mailbox.Maildir(incomming["mldr"],  factory = None, create = True)
-                md.add(incomming["msg"])
+                
+                # call filter Module
+                if MGFilter(incomming):
+                    md = mailbox.Maildir(incomming["mldr"],  factory = None, create = True)
+                    md.add(incomming["msg"])
+                
                 incomming["data"] = False
         
         elif data.find("DATA") == 0:
