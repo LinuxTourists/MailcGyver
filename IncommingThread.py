@@ -8,7 +8,7 @@ Created on Thu Nov  3 13:04:14 2016
 import mailbox
 
 def IncommingThread (conn, REPLY, KNOWN):
-    incomming = dict (data = False, rcpt = None, mlfr = None, msg = "")
+    incomming = dict (data = False, rcpt = None, mlfr = None, msg = "", mldr = "")
     conn.send (REPLY["ready"])
     
     while True:
@@ -49,6 +49,7 @@ def IncommingThread (conn, REPLY, KNOWN):
             rcpt = data.split("RCPT TO:")[1].strip()
              # if RCPT is unknown, just quit connection immediately :)
             if rcpt in KNOWN:
+                incomming["mldr"] = KNOWN[rcpt]
                 incomming["rcpt"] = rcpt
                 conn.send (REPLY["ok"])
             else:               

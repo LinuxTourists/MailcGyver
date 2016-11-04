@@ -11,13 +11,11 @@ import socket, sys, _thread
 
 # MailcGyver stuff
 from IncommingThread import IncommingThread
+from users import KNOWN
 
 # localhost only on some high port
 HOST = '127.0.0.1'
 PORT = 2525
-
-# todo: read from file or database?
-KNOWN =  ["<receiver@example.com>", "<m@mustermann.de>"]
 
 REPLY = dict(ready = "220 service ready\n".encode(), 
          ok = "250 OK\n".encode(), 
