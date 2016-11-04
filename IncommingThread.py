@@ -22,15 +22,13 @@ def IncommingThread (conn, REPLY, KNOWN):
         if incomming["data"]:
             
             incomming["msg"] += data
-            print(incomming["msg"])
 
             # last line is only a . ? data transfer is finished
             # tias            
             # stop = data.split("\n")[-1].strip()
             if data.split("\n")[-1].strip() == "." or data.split("\n")[-2].strip() == ".":
                 # todo: optional filter
-                # todo: determine Maildir folder of mlfr
-                md = mailbox.Maildir('/home/foo/Maildir')
+                md = mailbox.Maildir(incomming["mldr"],  factory = None, create = True)
                 md.add(incomming["msg"])
                 incomming["data"] = False
         
