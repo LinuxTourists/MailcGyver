@@ -16,16 +16,9 @@ Therefore port (2525) and host (127.0.0.1) are not configurable.
 
 ## Todo
 
-  * decide known mailadress -> username handling
-  * complete `IncommingThread()`
-    * determine mailadress -> username -> Maildir location
   * implement `OutgoingThread()`
     * simple vise-versa to server (client implementation)
     * SMTP-Auth PLAIN 
-  * Optional: Plugin based filtering
-    * check for valid mail address format in "MAIL FROM"
-    * grey listing?
-    * spam detection?
 
   
  
